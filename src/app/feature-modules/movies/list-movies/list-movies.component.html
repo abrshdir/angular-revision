@@ -1,0 +1,76 @@
+<div [ngClass]="border">
+  <h2>Property Binding</h2>
+  <h5 [ngClass]="colorHeader">Omitting the brackets renders the string parentItem, not the value of parentItem.</h5>
+  <img [src]="itemImageUrl" alt="" width="100px" height="100px">
+  <hr>
+  <h5 [ngClass]="colorHeader">Dynamically can be disabled</h5>
+  <button [disabled]="isUnchanged">Disabled Button</button>
+  <hr>
+  <h5 [ngClass]="colorHeader">Set in css the property of classes</h5>
+  <p [ngClass]="classes">[ngClass] binding to the classes property making this blue</p>
+  <hr>
+  <h5 [ngClass]="colorHeader">@Input: binding between components childItem must be declared in the tagged file</h5>
+  <app-item-detail [childItem]="parentItem"></app-item-detail>
+  <hr>
+  <h5 [ngClass]="specialHeader">interpolated vs property bound</h5>
+  <p>
+    <img src="{{itemImageUrl}}" alt="itemImageURl" width="200px" height="100px">is the <i>interpolated</i> image.
+    <img [src]="itemImageUrl" alt="itemImageURl" width="200px" height="100px">is the <i>property bound</i> image.
+  </p>
+  <p><span>"{{interpolationTitle}}" is the <i>interpolated</i> title.</span></p>
+  <p>"<span [innerHTML]="propertyTitle"></span>"is the <i>interpolated</i> title.s</p>
+  <hr>
+</div>
+<hr>
+<!-------------------------------------------------------------->
+<div *ngIf="currentItems">
+  <h2 id="event-binding">Input and Output</h2>
+  <app-item-detail [items]="currentItems" (newItemEvent)="addItem($event)"></app-item-detail>
+  <ul>
+    <li *ngFor="let item of items">
+      {{item}}
+    </li>
+  </ul>
+</div>
+<hr>
+<!---------------------------------------------------------------->
+<div>
+  <h1>Two Way binding Using INPUT AND OUTPUT</h1>
+  <app-item-detail [(size)]="fontSizePx"></app-item-detail>
+  <!--  ALternative to the banana-in-a-box expression-->
+  <!--    <app-item-detail [size]="fontSizePx" (sizeChange)="fontSizePx=$event"></app-item-detail>-->
+  <div [style.font-size.px]="fontSizePx">Resizable Text</div>
+</div>
+<hr>
+<!---------------NgModel ----------------------------------------->
+<h1>NgModel</h1>
+<input [(ngModel)]="name" #ctrl="ngModel" required>
+
+<p>Value: {{ name }}</p>
+<p>Valid: {{ ctrl.valid }}</p>
+
+<button (click)="setValue()">Set value</button>
+<hr>
+<!----------------------------------------------------->
+<!--------------------------------------------------------------->
+<!---->
+<!------------------------NgModel in forms----------------->
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <input name="first" ngModel required #first="ngModel">
+  <input name="last" ngModel>
+  <button>Submit</button>
+</form>
+
+<p>First name value: {{ first.value }}</p>
+<p>First name valid: {{ first.valid }}</p>
+<p>Form value: {{ f.value | json }}</p>
+<p>Form valid: {{ f.valid }}</p>
+<hr>
+<!----------------TrackBY---------------------------------->
+<tr *ngFor="let each of items; let i =index; trackBy: trackByFn">
+  <td>{{each}}</td>
+  <td>
+    <button class="btn btn-light btn-outline-dark" (click)="edit(each)">Update</button>
+  </td>
+</tr>
+<hr>

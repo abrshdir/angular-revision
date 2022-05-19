@@ -1,0 +1,15 @@
+.special{
+  color: blue;
+  background-color: yellow;
+}
+.colorHeader{
+  color: darkgreen;
+}
+
+.specialHeader{
+  color: red;
+}
+
+.border{
+  border: 10px red ;
+}

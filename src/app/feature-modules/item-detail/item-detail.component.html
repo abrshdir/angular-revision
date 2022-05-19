@@ -1,0 +1,71 @@
+<p *ngIf="childItem">item-detail works! with the parent value:........: {{childItem}}
+<p *ngIf="items" style="background-color: red">Today Item is {{items}}</p>
+<hr>
+<!---------------------------------------------->
+<div *ngIf="newItemEvent">
+  <h3 id="event-binding">Output</h3>
+  <label for="item-input">Add an item:</label>
+  <input type="text" id="item-input" #newItem>
+  <button (click)="addNewItem(newItem.value)">Add to parent's list</button>
+</div>
+<!---------------------------------------------->
+<!--<div class="layout-column align-items-center mt-50">-->
+
+<!--<section class="layout-row align-items-center justify-content-between">-->
+<!--  <label>Celsius: </label>-->
+<!--  <input type="number" class="large" data-test-id="celsius-input" [(ngModel)]="names" value="{{(ctrls.value - 32) * 5/9}}" #ctrl="ngModel"/>-->
+<!--</section>-->
+
+<!--<section class="layout-row align-items-center justify-content-between">-->
+<!--  <label>Fahrenheit: </label>-->
+<!--  <input type="number" class="large" data-test-id="fahrenheit-input" [(ngModel)]="namess" value="{{(ctrl.value * 9/5) + 32}}" #ctrls="ngModel"/>-->
+<!--</section>-->
+<!--</div>-->
+<hr>
+<div *ngIf="size">
+  <h1>From Item-Detail</h1>
+  <button (click)="dec()" title="smaller">-</button>
+  <button (click)="inc()" title="bigger">+</button>
+  <label [style.font-size.px]="size">FontSize: {{size}}px</label>
+</div>
+
+
+<!---->
+
+<div *ngIf="weatherData" class="weather-data layout-column align-items-center mt-50">
+
+  {{weatherData | json}}
+  <section class="layout-row align-items-center justify-content-center">
+    <label>Enter City: </label>
+    <input type="text" class="large ml-30" placeholder="Seattle" data-test-id="app-input" [value]="city" (input)="city=getCity($event.target)"/>
+  </section>
+
+  <section class="mt-20 layout-row align-items-center justify-content-center">
+    <div class="card outlined">
+      <div data-test-id="weather-details" class="card-text pt-10 layout-row justify-content-between">
+        <div class="mt-20 outlined">
+          <button class="icon-only mx-2">
+            <i class="material-icons">wb_sunny</i>
+          </button>
+          <span data-test-id="output-temperature" class="temperature"></span>
+        </div>
+        <div class="mr-15 mb-15">
+          <div data-test-id="output-wind" class="mt-20">
+            Wind: {{wind}}
+          </div>
+          <div data-test-id="output-humidity" class="mt-20">
+            Humidity: {{humidity}}
+          </div>
+        </div>
+      </div>
+      <div data-test-id="no-results" class="card-text"></div>
+    </div>
+  </section>
+</div>
+<!--<div class="detail">-->
+<!--  <p>This is the ItemDetailComponent</p>-->
+<!--  <img src="{{itemImageUrl}}" [style.display]="displayNone" alt="">-->
+<!--&lt;!&ndash;  <span [style.text-decoration]="lineThrough">{{ item.name }}&ndash;&gt;-->
+<!--&lt;!&ndash;  </span>&ndash;&gt;-->
+<!--  <button (click)="delete()">Delete</button>-->
+<!--</div>-->

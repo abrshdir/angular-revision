@@ -1,0 +1,73 @@
+<app-list-movies></app-list-movies>
+<h1 id="event-binding">Event Binding</h1>
+<!------------------------------------------------------------------->
+<div class="group">
+  <h3>Target event</h3>
+  <button (click)="onSave($event)">Save</button>
+
+  <button on-click="onSave($event)">on-click Save</button>
+
+  <h4>myClick is an event on the custom ClickDirective:</h4>
+  <button (myClick)="clickMessage=$event" clickable>click with myClick</button>
+  {{clickMessage}}
+
+</div>
+<!------------------------------------------------------------------->
+<div class="group">
+  <h3>$event and event handling statements</h3>
+  <h4>Result: {{currentItem.name}}</h4>
+
+  <input [value]="currentItem.name"
+         (input)="currentItem.name=getValue($event.target)">
+  without NgModel
+</div>
+<!------------------------------------------------------------------->
+
+<div class="group">
+  <h3>Binding to a nested component</h3>
+  <h4>Custom events with EventEmitter</h4>
+  <app-item-detail (deleteRequest)="deleteItem($event)" [item]="currentItem"></app-item-detail>
+
+
+  <h4>Click to see event target owner class:</h4>
+  <div class="parent-div" (click)="onClickMe($event)">Click me (parent)
+    <div class="child-div">Click me too! (child)</div>
+  </div>
+  <!------------------------------------------------------------------->
+
+  <h3>Saves only once:</h3>
+  <div (click)="onSave()" clickable>
+    <button (click)="onSave($event)">Save, no propagation</button>
+
+  </div>
+
+  <h3>Saves twice:</h3>
+  <div (click)="onSave()" clickable>
+    <button (click)="onSave()">Save with propagation</button>
+  </div>
+
+</div>
+
+<!------------------->
+<hr>
+<div class="layout-column align-items-center">
+  <app-item-detail [weatherData]="weatherData"></app-item-detail>
+</div>
+whasssssssssssssssss{{date | date:'yyy, E, dd, LLL, y, hh:mm:ss a zzzz'}}
+<br>
+whasssssssssssssssss{{date | date:'full'}}
+<br>
+{{sampleNo.toPrecision(5) | percent}}
+{{sampleNo.toFixed(6)}}
+{{date | date: 'ww: yyyy MMMMM dd hh-mm-ss'}}
+<!--{{sampleNo | number: '4.1-5'}}-->
+{{sampleNo | currency: currency:'symbol':'9.2-2'}}
+<br>
+<br>
+<br>
+<hr>
+<!--
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
